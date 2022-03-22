@@ -1,0 +1,99 @@
+@use '../../partials/mixins' as *;
+
+@keyframes swipe {
+  0%,
+  77.6667% {
+    right: unset;
+    left: 0;
+    width: 0;
+  }
+  86% {
+    right: unset;
+    left: 0;
+    width: 100%;
+  }
+  91% {
+    right: 0;
+    left: unset;
+    width: 100%;
+  }
+  100% {
+    right: 0;
+    left: unset;
+    width: 0;
+  }
+}
+@keyframes hide {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 1rem;
+  &__text-wrapper {
+    position: relative;
+    display: inline;
+    &--first {
+      &::after {
+        position: absolute;
+        top: 0;
+        width: 0;
+        height: 100%;
+        content: '';
+        background-color: #000000;
+        animation: swipe 2s none;
+      }
+    }
+    &--second {
+      &::after {
+        position: absolute;
+        top: 0;
+        width: 0;
+        height: 100%;
+        content: '';
+        background-color: #000000;
+        animation: swipe 2s none;
+        animation-delay: 1s;
+      }
+    }
+    &--third {
+      &::after {
+        position: absolute;
+        top: 0;
+        width: 0;
+        height: 100%;
+        content: '';
+        background-color: #000000;
+        animation: swipe 2s none;
+        animation-delay: 1.5s;
+      }
+    }
+  }
+  &__title {
+    font-size: 2.5rem;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    &--first {
+      animation: hide forwards;
+      animation-delay: 1.72s;
+    }
+    &--second {
+      animation: hide forwards;
+      animation-delay: 2.72s;
+    }
+    &--third {
+      animation: hide forwards;
+      animation-delay: 3.22s;
+    }
+  }
+}

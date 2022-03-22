@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import { Canvas } from '@react-three/fiber';
+import { ScrollControls } from '@react-three/drei';
+import CustomScrollBar from './components/CustomScrollBar/CustomScrollBar';
+import Intro from './components/Intro/Intro';
+import Header from './components/Header/Header';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Canvas className="webgl">
+        <Header />
+        <ScrollControls pages={3}>
+          <CustomScrollBar />
+          <Intro />
+        </ScrollControls>
+      </Canvas>
+    </>
   );
-}
+};
 
 export default App;

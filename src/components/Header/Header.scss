@@ -1,0 +1,25 @@
+@use '../../partials/mixins' as *;
+
+.header{
+  border-radius: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  height: 3.5rem;
+  border-bottom: #000000 1px solid;
+  background-color: #ffffff;
+  padding: 0 1rem;
+
+  &__menu-icon-wrapper{
+    margin-top: 0.5rem;
+    cursor: pointer;
+  }
+  &__menu-icon{
+    display: block;
+    height: 0.125rem;
+    width: 2rem;
+    background-color: #000000;
+    margin-bottom: 0.5rem;
+  }
+}
