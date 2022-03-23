@@ -1,0 +1,19 @@
+@use '../../partials/mixins' as *;
+
+.about {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  //justify-content: flex-end;
+  padding: 0 1rem;
+  padding-top: 18rem;
+  color: #282b29;
+
+  &__skills-wrapper {
+    border-top: #282b29 solid 1px;
+    //border-bottom: black solid 1px;
+    &--last {
+      border-bottom: #282b29 solid 1px;
+    }
+  }
+}

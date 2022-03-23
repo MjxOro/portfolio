@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber';
 import { useScroll } from '@react-three/drei';
 import { Matrix4, Vector3 } from 'three';
 
@@ -11,6 +11,7 @@ const Background = () => {
   const tempMatrix = useMemo(() => new Matrix4(), []);
   const tempVec3 = useMemo(() => new Vector3(), []);
   const [populate, setPopulate] = useState<boolean>(false); //Change to state manager
+  const { height } = useThree((s) => s.viewport);
   const scroll = useScroll();
   //Generate some random positions, speed factors and timings
   const particles = useMemo(() => {
@@ -33,8 +34,7 @@ const Background = () => {
   }, []);
 
   useFrame((_, delta) => {
-    const scrolled = scroll.range(0, 1 / 10);
-    const hideObj = scroll.visible(2 / 3, 1 / 3);
+    const compressObjMobile = scroll.range(0, 1 / 7);
     //This means random movement of particles
     if (populate) {
       particles.forEach((particle, i) => {
@@ -53,7 +53,7 @@ const Background = () => {
           zFactor +
           Math.cos((t / 10) * factor) +
           (Math.sin(t * 3) * factor) / 10;
-        const s = Math.cos(t);
+        const s = Math.cos(t) * 0.5;
         // Update the  object
         particleObj.position.set(posX / 20, posY / 20, posZ / 20);
         mesh.current.getMatrixAt(i, tempMatrix);
@@ -61,8 +61,8 @@ const Background = () => {
         particleObj.position.x = THREE.MathUtils.lerp(tempVec3.x, posX, delta);
         particleObj.position.y = THREE.MathUtils.lerp(tempVec3.y, posY, delta);
         particleObj.position.z = THREE.MathUtils.lerp(tempVec3.z, posZ, delta);
-        if (scrolled >= 0.98) {
-          //temp.current += delta * 10;
+        if (compressObjMobile >= 0.98) {
+          //Mobile Only for now
           mesh.current.getMatrixAt(i, tempMatrix);
           tempVec3.setFromMatrixPosition(tempMatrix);
           particleObj.position.x = THREE.MathUtils.lerp(
@@ -77,10 +77,13 @@ const Background = () => {
           );
           particleObj.position.z = THREE.MathUtils.lerp(
             tempVec3.z,
-            posZ / 20 - 10,
+            0,
             delta * 5
           );
-        } else if (scrolled < 0.98) {
+          mesh.current.scale.lerp(new Vector3(0.4, 0.4, 0.4), delta);
+          //mesh.current.position.lerp(new Vector3(0, -height * 0.2, 0), delta);
+        } else if (compressObjMobile < 0.98) {
+          //Mobile only for now
           mesh.current.getMatrixAt(i, tempMatrix);
           tempVec3.setFromMatrixPosition(tempMatrix);
           particleObj.position.x = THREE.MathUtils.lerp(
@@ -107,14 +110,9 @@ const Background = () => {
         mesh.current.instanceMatrix.needsUpdate = true;
       });
     }
-    // Hide particles after intro page
-    if (hideObj) {
-      mesh.current.scale.lerp(new Vector3(0, 0, 0), 0.1);
-    } else {
-      mesh.current.scale.lerp(new Vector3(1, 1, 1), 0.1);
-    }
     mesh.current.instanceMatrix.needsUpdate = true;
   });
+
   return (
     <>
       <pointLight
@@ -129,7 +127,11 @@ const Background = () => {
         intensity={8}
         color="lightblue"
       />
-      <instancedMesh ref={mesh} args={[undefined, undefined, count]}>
+      <instancedMesh
+        ref={mesh}
+        position={[0, -height * 0.66, -0.0001]}
+        args={[undefined, undefined, count]}
+      >
         <dodecahedronBufferGeometry attach="geometry" args={[0.2, 0]} />
         <meshPhongMaterial attach="material" color="black" />
       </instancedMesh>

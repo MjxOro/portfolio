@@ -20,7 +20,6 @@ const ProgressBar = ({
     mesh.current.scale.y = scroll.offset;
     mesh2.current.scale.y = 1 - scroll.offset;
   });
-  console.log(width);
   const position =
     size.width >= 768
       ? new Vector3(width / 2.01, 0, 0)
