@@ -5,13 +5,16 @@ import BurgerMenu from './BurgerMenu';
 import { useState } from 'react';
 
 const Header = () => {
-  const [burger, setBurger] = useState<boolean>(false);
+  const [show, setShow] = useState<boolean>(false);
   const { height, width } = useThree((s) => s.viewport);
+  const onClick = () => {
+    setShow(!show);
+  };
   //inline style webgl elements for accurate css styling
   return (
     <Html style={{ width: '100vw' }} position={[-width * 0.5, height * 0.5, 0]}>
       <nav className="header">
-        <BurgerMenu state={burger} />
+        <BurgerMenu state={show} onClick={onClick} />
         <div>Socials</div>
       </nav>
     </Html>
