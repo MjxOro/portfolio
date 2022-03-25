@@ -115,25 +115,13 @@ const Background = () => {
 
   return (
     <>
-      <pointLight
-        position={[0, 0, -8]}
-        distance={40}
-        intensity={8}
-        color="white"
-      />
-      <pointLight
-        position={[0, 2, -10]}
-        distance={40}
-        intensity={8}
-        color="lightblue"
-      />
       <instancedMesh
         ref={mesh}
-        position={[0, -height * 0.66, -0.0001]}
+        position={[0, -height * 0.6, -0.0001]}
         args={[undefined, undefined, count]}
       >
         <dodecahedronBufferGeometry attach="geometry" args={[0.2, 0]} />
-        <meshPhongMaterial attach="material" color="black" />
+        <meshToonMaterial attach="material" color="black" />
       </instancedMesh>
     </>
   );

@@ -8,6 +8,7 @@ import Intro from './components/Intro/Intro';
 import ProfilePicture from './components/About/ProfilePicture';
 import About from './components/About/About';
 import { Suspense, useState, useEffect } from 'react';
+import Projects, { Banner } from './components/Projects/Projects';
 
 const App = () => {
   const [width, set] = useState(window.innerWidth);
@@ -20,27 +21,32 @@ const App = () => {
   });
   return (
     <>
-      <Canvas className="webgl">
-        <color attach="background" args={['#f0f0f0']} />
-        <ambientLight />
-        <Header />
-        <ScrollControls
-          distance={1.5}
-          damping={width >= 768 ? 5 : 35}
-          pages={3}
-        >
-          {width >= 768 && <CustomScrollBar />}
-          <Scroll>
-            <Suspense fallback={null}>
+      <Canvas
+        className="webgl"
+        linear
+        dpr={(Math.min(window.devicePixelRatio), 2)}
+      >
+        <Suspense fallback={null}>
+          <color attach="background" args={['#f0f0f0']} />
+          <Header />
+          <ScrollControls
+            distance={1.5}
+            damping={width >= 768 ? 5 : 35}
+            pages={6}
+          >
+            {width >= 768 && <CustomScrollBar />}
+            <Scroll>
               <Background />
               <ProfilePicture />
-            </Suspense>
-          </Scroll>
-          <Scroll html>
-            <Intro />
-            <About />
-          </Scroll>
-        </ScrollControls>
+              <Banner />
+            </Scroll>
+            <Scroll html>
+              <Intro />
+              <About />
+              <Projects />
+            </Scroll>
+          </ScrollControls>
+        </Suspense>
       </Canvas>
     </>
   );

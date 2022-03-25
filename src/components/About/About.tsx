@@ -30,9 +30,7 @@ const About = () => {
     <div
       style={{
         width: '100vw',
-        height: '100vh',
-        position: 'absolute',
-        top: '100vh'
+        height: '100vh'
       }}
     >
       <motion.section
@@ -41,7 +39,7 @@ const About = () => {
         className={'about'}
       >
         <motion.h1 variants={inview}>ABOUT</motion.h1>
-        <motion.p variants={inview}>
+        <motion.p className={'about__description'} variants={inview}>
           Hello! My name is Matthew and I am a web-developer. I studied
           mechanical engineering for 3 years until I decided to switch into
           becoming a developer. With this background, I apply engineering
