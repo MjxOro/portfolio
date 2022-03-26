@@ -9,4 +9,15 @@
   &__filler {
     flex-grow: 1;
   }
+  &__icon-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 2rem;
+  }
+  &__icon {
+    cursor: pointer;
+  }
+  &__header {
+    margin-top: 12rem;
+  }
 }

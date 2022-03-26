@@ -8,15 +8,16 @@ import Plane from '../Shapes/Plane';
 
 const ProfilePicture = () => {
   const { height, width } = useThree((s) => s.viewport);
+  const { size } = useThree();
   const ref = useRef<any>(null!);
   const scroll = useScroll();
   const texture = useTexture(img);
   useFrame((_, delta) => {
-    const visible = scroll.visible(1 / 7, 1);
+    const visible = scroll.visible(1 / 12, 1);
     ref.current.position.y = THREE.MathUtils.damp(
-      visible ? -height * 0.6 : -height,
       ref.current.position.y,
-      2,
+      visible ? (size.height < 700 ? -height * 0.55 : -height * 0.7) : -height,
+      2.5,
       delta
     );
   });
@@ -26,7 +27,7 @@ const ProfilePicture = () => {
       position={[0, -height, 0.5]}
       scale={[width * 0.4, width * 0.4, 1]}
       args={[1, 1, 32, 32]}
-      shift={75}
+      shift={65}
       size={1}
       aspect={1}
       map={texture}

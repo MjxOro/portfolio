@@ -1,73 +1,100 @@
 import Plane from '../Shapes/Plane';
-import * as THREE from 'three';
-import { useThree } from '@react-three/fiber';
-import { useTexture, Text } from '@react-three/drei';
+import { useFrame, useThree } from '@react-three/fiber';
+import { useTexture, useScroll } from '@react-three/drei';
+import { useState } from 'react';
 import rerunImg from '../../assets/rerunPicture.png';
 import sendImg from '../../assets/sendPicture.png';
 import mePic from '../../assets/myPicture.jpeg';
 import '../Shaders/ProjectsShaders/CustomMaterial';
 import './Projects.scss';
+import Rerun from './Rerun';
+import Send from './Send';
+import Portfolio from './Portfolio';
+interface IAnimateState {
+  rerun: boolean;
+  send: boolean;
+  portfolio: boolean;
+}
 
 const Projects = () => {
+  const [animate, setAnimate] = useState<IAnimateState>({
+    rerun: false,
+    send: false,
+    portfolio: false
+  });
+  const scroll = useScroll();
+  useFrame(() => {
+    const scrollRef = scroll.visible(2.25 / 6, 2 / 6);
+    const scrollRef2 = scroll.visible(3.5 / 6, 2 / 6);
+    const scrollRef3 = scroll.visible(4.75 / 6, 2 / 6);
+    if (scrollRef !== animate.rerun)
+      setAnimate({ ...animate, rerun: scrollRef });
+    if (scrollRef2 !== animate.send)
+      setAnimate({ ...animate, send: scrollRef2 });
+    if (scrollRef3 !== animate.portfolio)
+      setAnimate({ ...animate, portfolio: scrollRef3 });
+  });
+  const inview = {
+    show: { opacity: 1, transition: { duration: 0.5 } },
+    hidden: { opacity: 0 }
+  };
+  const variants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3
+      }
+    }
+  };
+
   return (
     <>
-      <div style={{ width: '100vw', height: '100vh' }}>
-        <section className={'projects'}>
-          <h1>PROJECTS</h1>
-          <div>
-            <div className={'projects__filler'}></div>
-            <h2>RE-RUN</h2>
-            <p className={'projects__text'}>A peer-to-peer marketplace app.</p>
-            <p className={'projects__text'}>
-              Full-Stack, React, Sass, Node/Express, Jwt Tokens, MongoDB
-            </p>
-          </div>
-        </section>
-      </div>
-      <div style={{ width: '100vw', height: '100vh' }}>
-        <section className={'projects'}>
-          <h1></h1>
-          <div>
-            <div className={'projects__filler'}></div>
-            <h2>SEND</h2>
-            <p className={'projects__text'}>Messnger app.</p>
-            <p className={'projects__text'}>
-              Full-Stack, React, Typescript, Node/Express, OAuth, MongoDB, Web
-              Sockets, Google Api
-            </p>
-          </div>
-        </section>
-      </div>
-      <div style={{ width: '100vw', height: '100vh' }}>
-        <section className={'projects'}>
-          <h1></h1>
-          <div>
-            <div className={'projects__filler'}></div>
-            <h2>PORTFOLIO WEBSITE</h2>
-            <p className={'projects__text'}>
-              Front-End, React, Typescript, Webgl, Design
-            </p>
-          </div>
-        </section>
-      </div>
+      <Rerun variants={variants} inview={inview} animate={animate} />
+      <Send variants={variants} inview={inview} animate={animate} />
+      <Portfolio variants={variants} inview={inview} animate={animate} />
     </>
   );
 };
 
 export const Banner = () => {
   const { width, height } = useThree((s) => s.viewport);
-  const [rerun, send, me] = useTexture([rerunImg, sendImg, mePic]);
+  const [rerun, send, portfolio] = useTexture([rerunImg, sendImg, mePic]);
   return (
     <group position={[0, -height * 2, 0]}>
-      <Plane
-        map={rerun}
-        args={[width * 0.925, 2, 32, 32]}
-        shift={75}
-        size={1}
-        aspect={1.5}
-        scale={[1, 1, 1]}
-        frustumCulled={false}
-      />
+      <group>
+        <Plane
+          map={rerun}
+          args={[width * 0.925, 2, 32, 32]}
+          shift={70}
+          size={1}
+          aspect={1.5}
+          scale={[1, 1, 1]}
+          frustumCulled={false}
+        />
+      </group>
+      <group position={[0, -height, 0]}>
+        <Plane
+          map={send}
+          args={[width * 0.925, 2, 32, 32]}
+          shift={70}
+          size={1}
+          aspect={1.5}
+          scale={[1, 1, 1]}
+          frustumCulled={false}
+        />
+      </group>
+      <group position={[0, -height * 2.0, 0]}>
+        <Plane
+          map={send}
+          args={[width * 0.925, 2, 32, 32]}
+          shift={70}
+          size={1}
+          aspect={1.5}
+          scale={[1, 1, 1]}
+          frustumCulled={false}
+        />
+      </group>
     </group>
   );
 };

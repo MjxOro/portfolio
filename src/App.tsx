@@ -29,11 +29,7 @@ const App = () => {
         <Suspense fallback={null}>
           <color attach="background" args={['#f0f0f0']} />
           <Header />
-          <ScrollControls
-            distance={1.5}
-            damping={width >= 768 ? 5 : 35}
-            pages={6}
-          >
+          <ScrollControls damping={width >= 768 ? 5 : 35} pages={6}>
             {width >= 768 && <CustomScrollBar />}
             <Scroll>
               <Background />

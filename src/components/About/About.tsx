@@ -9,7 +9,7 @@ const About = () => {
   const animateRange = useRef(false);
   const [animate, set] = useState(true);
   useFrame(() => {
-    animateRange.current = scroll.visible(1 / 3, 1);
+    animateRange.current = scroll.visible(1 / 12, 1);
     animateRange.current !== animate && set(animateRange.current);
   });
   const wrapper = {
