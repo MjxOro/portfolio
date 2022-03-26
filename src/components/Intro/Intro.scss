@@ -39,7 +39,7 @@
   justify-content: center;
   align-items: flex-start;
   padding: 0 1rem;
-  color: #282b29;
+  color: #232b2b;
   &__text-wrapper {
     position: relative;
     display: inline;
@@ -50,7 +50,7 @@
         width: 0;
         height: 100%;
         content: '';
-        background-color: #000000;
+        background-color: #232b2b;
         animation: swipe 2s none;
       }
     }
@@ -61,7 +61,7 @@
         width: 0;
         height: 100%;
         content: '';
-        background-color: #000000;
+        background-color: #232b2b;
         animation: swipe 2s none;
         animation-delay: 1s;
       }

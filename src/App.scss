@@ -1,7 +1,6 @@
 .webgl {
   top: 0;
   left: 0;
-  z-index: 2;
   position: fixed !important;
   //Hide Dom ScrollBar
   & div:last-child::-webkit-scrollbar {

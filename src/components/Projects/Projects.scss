@@ -1,0 +1,23 @@
+@use '../../partials/mixins' as *;
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  padding: 0 1rem;
+  &__filler {
+    flex-grow: 1;
+  }
+  &__icon-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 2rem;
+  }
+  &__icon {
+    cursor: pointer;
+  }
+  &__header {
+    margin-top: 12rem;
+  }
+}

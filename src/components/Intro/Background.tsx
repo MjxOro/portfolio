@@ -12,6 +12,7 @@ const Background = () => {
   const tempVec3 = useMemo(() => new Vector3(), []);
   const [populate, setPopulate] = useState<boolean>(false); //Change to state manager
   const { height } = useThree((s) => s.viewport);
+  const { size } = useThree();
   const scroll = useScroll();
   //Generate some random positions, speed factors and timings
   const particles = useMemo(() => {
@@ -34,7 +35,7 @@ const Background = () => {
   }, []);
 
   useFrame((_, delta) => {
-    const compressObjMobile = scroll.range(0, 1 / 7);
+    const compressObjMobile = scroll.range(0, 1 / 12);
     //This means random movement of particles
     if (populate) {
       particles.forEach((particle, i) => {
@@ -115,25 +116,17 @@ const Background = () => {
 
   return (
     <>
-      <pointLight
-        position={[0, 0, -8]}
-        distance={40}
-        intensity={8}
-        color="white"
-      />
-      <pointLight
-        position={[0, 2, -10]}
-        distance={40}
-        intensity={8}
-        color="lightblue"
-      />
       <instancedMesh
         ref={mesh}
-        position={[0, -height * 0.66, -0.0001]}
+        position={[
+          0,
+          size.height < 700 ? -height * 0.55 : -height * 0.7,
+          -0.0001
+        ]}
         args={[undefined, undefined, count]}
       >
         <dodecahedronBufferGeometry attach="geometry" args={[0.2, 0]} />
-        <meshPhongMaterial attach="material" color="black" />
+        <meshToonMaterial attach="material" color="black" />
       </instancedMesh>
     </>
   );

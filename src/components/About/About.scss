@@ -4,16 +4,20 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  //justify-content: flex-end;
+  justify-content: flex-end;
   padding: 0 1rem;
-  padding-top: 18rem;
-  color: #282b29;
+  color: #232b2b;
+
+  &__description {
+    font-size: 14px;
+    margin: 0;
+  }
 
   &__skills-wrapper {
-    border-top: #282b29 solid 1px;
+    border-top: #232b2b solid 1px;
     //border-bottom: black solid 1px;
     &--last {
-      border-bottom: #282b29 solid 1px;
+      border-bottom: #232b2b solid 1px;
     }
   }
 }

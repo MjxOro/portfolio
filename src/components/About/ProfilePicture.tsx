@@ -1,32 +1,38 @@
 import { useRef } from 'react';
 import * as THREE from 'three';
 import { useThree, useFrame } from '@react-three/fiber';
-import { useScroll, Image } from '@react-three/drei';
+import { useScroll, useTexture, Html } from '@react-three/drei';
 import img from '../../assets/myPicture.jpeg';
+import '../Shaders/ProjectsShaders/CustomMaterial';
+import Plane from '../Shapes/Plane';
 
 const ProfilePicture = () => {
-  const { height } = useThree((s) => s.viewport);
+  const { height, width } = useThree((s) => s.viewport);
+  const { size } = useThree();
   const ref = useRef<any>(null!);
   const scroll = useScroll();
+  const texture = useTexture(img);
   useFrame((_, delta) => {
-    const visible = scroll.visible(1 / 7, 1);
+    const visible = scroll.visible(1 / 12, 1);
     ref.current.position.y = THREE.MathUtils.damp(
       ref.current.position.y,
-      visible ? 0 : -height * 0.5,
-      4,
-      delta
-    );
-    ref.current.material.zoom = THREE.MathUtils.damp(
-      ref.current.material.zoom,
-      visible ? 1 : 0.75,
-      0.5,
+      visible ? (size.height < 700 ? -height * 0.55 : -height * 0.7) : -height,
+      2.5,
       delta
     );
   });
   return (
-    <group scale={[1.5, 1.5, 0]} position={[0, -height * 0.66, 0.1]}>
-      <Image ref={ref} url={img} />
-    </group>
+    <Plane
+      ref={ref}
+      position={[0, -height, 0.5]}
+      scale={[width * 0.4, width * 0.4, 1]}
+      args={[1, 1, 32, 32]}
+      shift={65}
+      size={1}
+      aspect={1}
+      map={texture}
+      frustumCulled={false}
+    />
   );
 };
 export default ProfilePicture;
