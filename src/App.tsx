@@ -9,6 +9,7 @@ import ProfilePicture from './components/About/ProfilePicture';
 import About from './components/About/About';
 import { Suspense, useState, useEffect } from 'react';
 import Projects, { Banner } from './components/Projects/Projects';
+import Contacts from './components/Contacts/Contacts';
 
 const App = () => {
   const [width, set] = useState(window.innerWidth);
@@ -40,6 +41,7 @@ const App = () => {
               <Intro />
               <About />
               <Projects />
+              <Contacts />
             </Scroll>
           </ScrollControls>
         </Suspense>
