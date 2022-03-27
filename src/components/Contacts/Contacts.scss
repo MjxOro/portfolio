@@ -1,0 +1,43 @@
+@use '../../partials/mixins' as *;
+
+.contacts {
+  margin: 0 1rem;
+  overflow-x: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  &__title {
+    margin-top: calc(3.5rem + 2rem);
+    margin-bottom: 2rem;
+  }
+  &__socials-wrapper {
+    cursor: pointer;
+    border-top: #232b2b 1px solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &--last {
+      border-bottom: #232b2b 1px solid;
+    }
+    &:hover > .contacts__icon {
+      transform: rotate(0);
+      transition: 300ms ease all;
+    }
+  }
+  &__icon {
+    font-size: 2rem;
+    transform: rotate(-45deg);
+  }
+  &__marquee {
+    margin-bottom: 1rem;
+    display: inline-flex;
+    white-space: nowrap;
+  }
+}
