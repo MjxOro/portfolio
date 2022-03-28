@@ -45,10 +45,9 @@ const About = () => {
           <motion.p className={'about__description'} variants={inview}>
             Hello! My name is Matthew and I am a web-developer. I studied
             mechanical engineering for 3 years until I decided to switch into
-            becoming a developer. With this background, I apply engineering
-            practices and 3D modelling skills into web development. I enjoy
-            expressing my skills in problem solving and creativity as I build
-            applications.
+            becoming a developer and have been refining my skills through
+            various projects. I enjoy expressing my skills in problem solving
+            and creativity as I build applications.
           </motion.p>
           <motion.h3 variants={inview}>CURRENT TECH-STACK</motion.h3>
           <motion.div variants={inview} className={'about__skills-wrapper'}>
