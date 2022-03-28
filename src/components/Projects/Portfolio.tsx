@@ -22,9 +22,11 @@ const Portfolio = ({ variants, inview, animate }: any) => {
               onClick={() => window.open('https://mattheworo.site')}
             />
           </motion.div>
-          <motion.h2 variants={inview}>PORTFOLIO WEBSITE</motion.h2>
+          <motion.h3 className={'projects__sub-title'} variants={inview}>
+            PORTFOLIO WEBSITE
+          </motion.h3>
           <motion.p variants={inview} className={'projects__text'}>
-            Website about myself and coding projects
+            Website About My Recent Work
           </motion.p>
           <motion.p variants={inview} className={'projects__text'}>
             Front-End, React, Typescript, Webgl, Design

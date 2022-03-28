@@ -24,9 +24,11 @@ const Send = ({ variants, inview, animate }: any) => {
               }
             />
           </motion.div>
-          <h2>SEND</h2>
+          <motion.h3 variants={variants} className="projects__sub-title">
+            SEND
+          </motion.h3>
           <motion.p variants={inview} className={'projects__text'}>
-            Messenger app
+            Messenger App
           </motion.p>
           <motion.p variants={inview} className={'projects__text'}>
             Full-Stack, React, Typescript, Node / Express, OAuth, MongoDB, Web

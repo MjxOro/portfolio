@@ -1,10 +1,17 @@
-@mixin medium() {
+@mixin medium {
   @media (min-width: 768px) {
     @content;
   }
 }
-@mixin desktop() {
+@mixin large {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+@mixin desktop {
   @media (min-width: 1280px) {
     @content;
   }
 }
+
+//Fonts

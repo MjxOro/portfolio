@@ -17,7 +17,7 @@ const Contacts = () => {
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
       <section className={'contacts'}>
-        <h1 className={'contacts__title'}>Contacts</h1>
+        <h2 className={'contacts__title'}>Contacts</h2>
 
         <div>
           <div
@@ -26,7 +26,7 @@ const Contacts = () => {
               window.open('https://www.linkedin.com/in/matthew-oro')
             }
           >
-            <h2>LINKEDIN</h2>
+            <h4 className={'contacts__socials'}>LINKEDIN</h4>
             <motion.div className={'contacts__icon'}>
               <AiOutlineArrowRight />
             </motion.div>
@@ -35,7 +35,7 @@ const Contacts = () => {
             className={'contacts__socials-wrapper'}
             onClick={() => window.open('https://github.com/MjxOro')}
           >
-            <h2>GITHUB</h2>
+            <h4 className={'contacts__socials'}>GITHUB</h4>
             <motion.div className={'contacts__icon'}>
               <AiOutlineArrowRight />
             </motion.div>
@@ -48,7 +48,7 @@ const Contacts = () => {
               (window.location.href = 'mailto:mattheweoro@gmail.com')
             }
           >
-            <h2>EMAIL</h2>
+            <h4 className={'contacts__socials'}>EMAIL</h4>
             <motion.div className={'contacts__icon'}>
               <AiOutlineArrowRight />
             </motion.div>
@@ -56,14 +56,22 @@ const Contacts = () => {
         </div>
         <div>
           <motion.div variants={variants} className={'contacts__marquee'}>
-            <motion.h2 variants={variants} animate="animate">
+            <motion.h4
+              className={'contacts__marquee-text'}
+              variants={variants}
+              animate="animate"
+            >
               KEEP IN TOUCH • KEEP IN TOUCH • KEEP IN TOUCH • KEEP IN TOUCH •
               KEEP IN TOUCH • KEEP IN TOUCH •&nbsp;
-            </motion.h2>
-            <motion.h2 variants={variants} animate="animate">
+            </motion.h4>
+            <motion.h4
+              className={'contacts__marquee-text'}
+              variants={variants}
+              animate="animate"
+            >
               KEEP IN TOUCH • KEEP IN TOUCH • KEEP IN TOUCH • KEEP IN TOUCH •
               KEEP IN TOUCH • KEEP IN TOUCH •&nbsp;
-            </motion.h2>
+            </motion.h4>
           </motion.div>
         </div>
       </section>

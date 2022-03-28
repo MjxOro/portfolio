@@ -10,6 +10,7 @@ import './Projects.scss';
 import Rerun from './Rerun';
 import Send from './Send';
 import Portfolio from './Portfolio';
+import useResponsive from '../../utils/useResponsive';
 interface IAnimateState {
   rerun: boolean;
   send: boolean;
@@ -60,12 +61,32 @@ const Projects = () => {
 export const Banner = () => {
   const { width, height } = useThree((s) => s.viewport);
   const [rerun, send, portfolio] = useTexture([rerunImg, sendImg, mePic]);
+  const args = useResponsive(
+    [
+      width * 0.925 < 4.3 ? width * 0.925 : 4.3,
+      width * 0.475 < 2.32 ? width * 0.475 : 2.32,
+      32,
+      32
+    ],
+    [
+      width * 0.65 < 6.08 ? width * 0.65 : 6.08,
+      width * 0.35 < 3.45 ? width * 0.35 : 3.25,
+      32,
+      32
+    ],
+    [6.08, 3.05, 32, 32]
+  );
+  const position = useResponsive(
+    [0, -height * 1.95, 0],
+    [0.4, -height * 1.95, 0],
+    [0.4, -height * 1.95, 0]
+  );
   return (
-    <group position={[0, -height * 2, 0]}>
+    <group position={position}>
       <group>
         <Plane
           map={rerun}
-          args={[width * 0.925, 2, 32, 32]}
+          args={args}
           shift={70}
           size={1}
           aspect={1.5}
@@ -73,10 +94,10 @@ export const Banner = () => {
           frustumCulled={false}
         />
       </group>
-      <group position={[0, -height, 0]}>
+      <group position={[0, -height * 0.95, 0]}>
         <Plane
           map={send}
-          args={[width * 0.925, 2, 32, 32]}
+          args={args}
           shift={70}
           size={1}
           aspect={1.5}
@@ -84,10 +105,10 @@ export const Banner = () => {
           frustumCulled={false}
         />
       </group>
-      <group position={[0, -height * 2.0, 0]}>
+      <group position={[0, -height * 1.95, 0]}>
         <Plane
           map={send}
-          args={[width * 0.925, 2, 32, 32]}
+          args={args}
           shift={70}
           size={1}
           aspect={1.5}

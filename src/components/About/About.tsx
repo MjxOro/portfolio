@@ -16,7 +16,7 @@ const About = () => {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.25,
         delayChildren: 0.1
       }
     },
@@ -38,34 +38,32 @@ const About = () => {
         animate={animate ? 'show' : 'hidden'}
         className={'about'}
       >
-        <motion.h1 variants={inview}>ABOUT</motion.h1>
-        <motion.p className={'about__description'} variants={inview}>
-          Hello! My name is Matthew and I am a web-developer. I studied
-          mechanical engineering for 3 years until I decided to switch into
-          becoming a developer. With this background, I apply engineering
-          practices and 3D modelling skills into web development. I enjoy
-          expressing my skills in problem solving and creativity as I build
-          applications.
-        </motion.p>
-        <motion.h3 variants={inview}>CURRENT TECH-STACK</motion.h3>
-        <motion.div variants={inview} className={'about__skills-wrapper'}>
-          <p>HTML</p>
-        </motion.div>
-        <motion.div variants={inview} className={'about__skills-wrapper'}>
-          <p>CSS / SASS / TAILWINDCSS</p>
-        </motion.div>
-        <motion.div variants={inview} className={'about__skills-wrapper'}>
-          <p>JAVASCRIPT / TYPESCRIPT</p>
-        </motion.div>
-        <motion.div variants={inview} className={'about__skills-wrapper'}>
-          <p>REACT / NEXT</p>
-        </motion.div>
-        <motion.div
-          variants={inview}
-          className={'about__skills-wrapper about__skills-wrapper--last'}
-        >
-          <p>MONGODB</p>
-        </motion.div>
+        <main className={'about__content-wrapper'}>
+          <motion.h2 className={'about__title'} variants={inview}>
+            ABOUT
+          </motion.h2>
+          <motion.p className={'about__description'} variants={inview}>
+            Hello! My name is Matthew and I am a web-developer. I studied
+            mechanical engineering for 3 years until I decided to switch into
+            becoming a developer. With this background, I apply engineering
+            practices and 3D modelling skills into web development. I enjoy
+            expressing my skills in problem solving and creativity as I build
+            applications.
+          </motion.p>
+          <motion.h3 variants={inview}>CURRENT TECH-STACK</motion.h3>
+          <motion.div variants={inview} className={'about__skills-wrapper'}>
+            <p>HTML / CSS / SASS / TAILWINDCSS</p>
+          </motion.div>
+          <motion.div variants={inview} className={'about__skills-wrapper'}>
+            <p>JAVASCRIPT / TYPESCRIPT / REACT / NEXT</p>
+          </motion.div>
+          <motion.div
+            variants={inview}
+            className={'about__skills-wrapper about__skills-wrapper--last'}
+          >
+            <p>NODE / MONGODB / POSTGRES SQL / OAUTH</p>
+          </motion.div>
+        </main>
       </motion.section>
     </div>
   );

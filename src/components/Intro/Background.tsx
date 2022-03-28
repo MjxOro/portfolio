@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { useFrame, useThree } from '@react-three/fiber';
 import { useScroll } from '@react-three/drei';
 import { Matrix4, Vector3 } from 'three';
+import useResponsive from '../../utils/useResponsive';
 
 const Background = () => {
   const mesh = useRef<THREE.InstancedMesh>(null!);
@@ -11,9 +12,15 @@ const Background = () => {
   const tempMatrix = useMemo(() => new Matrix4(), []);
   const tempVec3 = useMemo(() => new Vector3(), []);
   const [populate, setPopulate] = useState<boolean>(false); //Change to state manager
-  const { height } = useThree((s) => s.viewport);
+  const { height, width } = useThree((s) => s.viewport);
   const { size } = useThree();
   const scroll = useScroll();
+  const position = useResponsive(
+    [0, size.height < 720 ? -height * 0.4 : -height * 0.65, 0],
+    [0.25, -height * 0.55, 0],
+    [0.5, -height * 0.65, 0]
+  );
+  const scale = useResponsive([1, 1, 1], [1.1, 1.1, 1.1], [10, 10, 10]);
   //Generate some random positions, speed factors and timings
   const particles = useMemo(() => {
     const temp = [];
@@ -68,12 +75,12 @@ const Background = () => {
           tempVec3.setFromMatrixPosition(tempMatrix);
           particleObj.position.x = THREE.MathUtils.lerp(
             tempVec3.x,
-            posX / 20,
+            size.width < 1280 ? posX / 20 : posX / 15,
             delta * 5
           );
           particleObj.position.y = THREE.MathUtils.lerp(
             tempVec3.y,
-            posY / 20,
+            size.width < 1280 ? posY / 20 : posY / 15,
             delta * 5
           );
           particleObj.position.z = THREE.MathUtils.lerp(
@@ -118,11 +125,8 @@ const Background = () => {
     <>
       <instancedMesh
         ref={mesh}
-        position={[
-          0,
-          size.height < 700 ? -height * 0.55 : -height * 0.7,
-          -0.0001
-        ]}
+        position={position}
+        scale={scale}
         args={[undefined, undefined, count]}
       >
         <dodecahedronBufferGeometry attach="geometry" args={[0.2, 0]} />
