@@ -44,7 +44,7 @@ const About = () => {
           </motion.h2>
           <motion.p className={'about__description'} variants={inview}>
             Hello! My name is Matthew and I am a web-developer. I studied
-            mechanical engineering for 3 years until I decided to switch into
+            mechanical engineering for 3 years, until I decided to switch into
             becoming a developer and have been refining my skills through
             various projects. I enjoy expressing my skills in problem solving
             and creativity as I build applications.
