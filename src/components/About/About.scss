@@ -7,14 +7,42 @@
   justify-content: flex-end;
   margin: 0 1rem;
   color: #232b2b;
+  @include medium {
+    margin: 0 0 0 120px;
+    padding: 0 2.5rem;
+  }
+  @include large {
+    padding: 0 2.5rem;
+  }
+  @include desktop {
+    padding: 0 15%;
+  }
 
+  &__content-wrapper {
+    @include medium {
+      @media (min-height: 1000px) {
+        margin-bottom: 25%;
+      }
+    }
+    @include desktop {
+      margin-bottom: 0;
+    }
+  }
   &__description {
-    font-size: 14px;
     margin: 0;
+    @include medium {
+    }
   }
 
   &__skills-wrapper {
     border-top: #232b2b solid 1px;
+    & > * {
+      margin: 0;
+      margin: 1rem 0;
+      @include medium {
+        margin: 2rem 0;
+      }
+    }
     //border-bottom: black solid 1px;
     &--last {
       border-bottom: #232b2b solid 1px;

@@ -9,6 +9,14 @@
   height: 3.5rem;
   border-bottom: #232b2b 1px solid;
   color: #232b2b;
+  @include medium {
+    flex-direction: column;
+    width: 120px;
+    height: 100%;
+    margin: 0;
+    padding: 2.5rem 0;
+    border-right: #232b2b 1px solid;
+  }
   //background-color: #ffffff;
   //padding: 0 1rem;
 

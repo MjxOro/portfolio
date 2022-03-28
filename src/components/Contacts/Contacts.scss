@@ -7,6 +7,15 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  @include medium {
+    margin: 0 2.5rem 0 calc(120px + 2.5rem);
+  }
+  @include large {
+    margin: 0 3rem 0 calc(120px + 3rem);
+  }
+  @include desktop {
+    margin: 0 15% 0 calc(120px + 15%);
+  }
 
   &__wrapper {
     display: flex;
@@ -23,6 +32,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    & > * {
+      margin: 0;
+      margin: 1rem 0;
+      @include medium {
+        margin: 2rem 0;
+      }
+    }
     &--last {
       border-bottom: #232b2b 1px solid;
     }
@@ -31,9 +47,12 @@
       transition: 300ms ease all;
     }
   }
+
   &__icon {
-    font-size: 2rem;
     transform: rotate(-45deg);
+    @include medium {
+      font-size: 2rem;
+    }
   }
   &__marquee {
     margin-bottom: 1rem;

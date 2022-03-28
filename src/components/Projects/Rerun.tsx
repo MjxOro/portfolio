@@ -6,7 +6,7 @@ const Rerun = ({ variants, inview, animate }: any) => {
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
       <section className={'projects'}>
-        <h1 className={'projects__header'}>PROJECTS</h1>
+        <h2 className={'projects__title'}>PROJECTS</h2>
         <motion.div
           variants={variants}
           animate={animate.rerun ? 'show' : 'hidden'}
@@ -24,9 +24,11 @@ const Rerun = ({ variants, inview, animate }: any) => {
               }
             />
           </motion.div>
-          <motion.h2 variants={inview}>RE-RUN</motion.h2>
+          <motion.h3 className="projects__sub-title" variants={inview}>
+            RE-RUN
+          </motion.h3>
           <motion.p variants={inview} className={'projects__text'}>
-            A peer-to-peer marketplace app
+            A Peer-To-Peer Marketplace App
           </motion.p>
           <motion.p variants={inview} className={'projects__text'}>
             Full-Stack, React, Sass, Node / Express, Jwt Tokens, MongoDB
