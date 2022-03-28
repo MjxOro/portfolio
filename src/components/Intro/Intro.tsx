@@ -2,7 +2,6 @@ import './Intro.scss';
 import { useFrame } from '@react-three/fiber';
 
 const Intro = () => {
-  useFrame(() => {});
   return (
     <div
       style={{

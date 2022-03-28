@@ -10,12 +10,16 @@ import About from './components/About/About';
 import { Suspense, useState, useEffect } from 'react';
 import Projects, { Banner } from './components/Projects/Projects';
 import Contacts from './components/Contacts/Contacts';
+import Sidebar from './components/Header/Sidebar';
+import useStore from './utils/store';
+import { motion } from 'framer-motion';
 
 const App = () => {
   const [width, set] = useState(window.innerWidth);
   const updateWidth = () => {
     set(window.innerWidth);
   };
+  const { showSidebar } = useStore();
   useEffect(() => {
     window.addEventListener('resize', updateWidth);
     return () => window.removeEventListener('resize', updateWidth);
@@ -31,6 +35,7 @@ const App = () => {
           <color attach="background" args={['#f0f0f0']} />
           <Header />
           <ScrollControls damping={width >= 768 ? 5 : 35} pages={6}>
+            <Sidebar left />
             {width >= 768 && <CustomScrollBar />}
             <Scroll>
               <Background />
@@ -38,10 +43,17 @@ const App = () => {
               <Banner />
             </Scroll>
             <Scroll html>
-              <Intro />
-              <About />
-              <Projects />
-              <Contacts />
+              <motion.div
+                animate={{
+                  opacity: showSidebar ? 0.15 : 1,
+                  transition: { delay: 0.5 }
+                }}
+              >
+                <Intro />
+                <About />
+                <Projects />
+                <Contacts />
+              </motion.div>
             </Scroll>
           </ScrollControls>
         </Suspense>
