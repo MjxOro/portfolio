@@ -4,7 +4,7 @@ import { useTexture, useScroll } from '@react-three/drei';
 import { useState } from 'react';
 import rerunImg from '../../assets/rerunPicture.png';
 import sendImg from '../../assets/sendPicture.png';
-import mePic from '../../assets/myPicture.jpeg';
+import portfolioImg from '../../assets/portfolioPicture.png';
 import '../Shaders/ProjectsShaders/CustomMaterial';
 import './Projects.scss';
 import Rerun from './Rerun';
@@ -60,7 +60,11 @@ const Projects = () => {
 
 export const Banner = () => {
   const { width, height } = useThree((s) => s.viewport);
-  const [rerun, send, portfolio] = useTexture([rerunImg, sendImg, mePic]);
+  const [rerun, send, portfolio] = useTexture([
+    rerunImg,
+    sendImg,
+    portfolioImg
+  ]);
   const args = useResponsive(
     [
       width * 0.925 < 4.3 ? width * 0.925 : 4.3,
@@ -107,7 +111,7 @@ export const Banner = () => {
       </group>
       <group position={[0, -height * 1.95, 0]}>
         <Plane
-          map={send}
+          map={portfolio}
           args={args}
           shift={70}
           size={1}
