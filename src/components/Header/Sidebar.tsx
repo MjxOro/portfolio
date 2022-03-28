@@ -4,6 +4,7 @@ import { Html, MeshWobbleMaterial, useScroll } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 import { a, useSpring, easings } from '@react-spring/three';
 import { FaGithubSquare, FaLinkedin, FaTwitterSquare } from 'react-icons/fa';
+import useResponsive from '../../utils/useResponsive';
 
 const Sidebar = ({ left }: { left?: boolean; top?: boolean }) => {
   const { showSidebar: state } = useStore();
@@ -38,10 +39,10 @@ const Sidebar = ({ left }: { left?: boolean; top?: boolean }) => {
   const handleClick = (e: MouseEvent<HTMLParagraphElement>) => {
     const target = e.target as HTMLElement;
     if (target.innerText.toLowerCase() === 'about') {
-      scroll.el.scrollTo(0, window.innerWidth);
+      scroll.el.scrollTo(0, window.innerHeight);
       useStore.setState({ showSidebar: false });
     } else if (target.innerText.toLowerCase() === 'projects') {
-      scroll.el.scrollTo(0, window.innerWidth * 3);
+      scroll.el.scrollTo(0, window.innerHeight * 2.5);
       useStore.setState({ showSidebar: false });
     } else if (target.innerText.toLowerCase() === 'contacts') {
       scroll.el.scrollTo(0, scroll.el.scrollHeight);
