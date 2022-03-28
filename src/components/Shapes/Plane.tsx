@@ -17,11 +17,13 @@ const Plane = forwardRef(
     useMemo(() => (map.minFilter = THREE.LinearFilter), [map]);
     useFrame(() => {
       const offsetFactor = (scroll.offset + 1) / pages;
+      /*
       material.current.scale = THREE.MathUtils.lerp(
         material.current.scale,
         offsetFactor - (scroll.el.scrollTop * 0.25) / (pages * size.height),
         0.1
       );
+      */
       material.current.shift = THREE.MathUtils.lerp(
         material.current.shift,
         (scroll.el.scrollTop - last) / shift,
