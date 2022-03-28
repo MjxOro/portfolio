@@ -1,25 +1,77 @@
 @use '../../partials/mixins' as *;
 
 .header {
-  border-radius: border-box;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 1rem;
+  padding: 0 1rem;
   height: 3.5rem;
   border-bottom: #232b2b 1px solid;
   color: #232b2b;
+  &--show-sidebar {
+    background-color: #232b2b;
+    & > * {
+      color: #f0f0f0;
+    }
+    & .header__menu-icon {
+      background-color: #f0f0f0;
+    }
+  }
+  &__options-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50vw;
+    @include medium {
+      height: 100vh;
+      width: 100vw;
+    }
+  }
+  &__options {
+    color: #f0f0f0;
+  }
   @include medium {
+    height: 100%;
     flex-direction: column;
     width: 120px;
-    height: 100%;
     margin: 0;
     padding: 2.5rem 0;
     border-right: #232b2b 1px solid;
+    @include desktop {
+      &:hover {
+        background-color: #232b2b;
+        & > * {
+          color: #f0f0f0;
+        }
+        & .header__menu-icon {
+          background-color: #f0f0f0;
+        }
+      }
+    }
   }
-  //background-color: #ffffff;
-  //padding: 0 1rem;
-
+  &__icon-wrapper {
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    font-size: 1.5rem;
+    justify-content: space-evenly;
+    @include medium {
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      font-size: 2rem;
+      margin-bottom: 5vh;
+    }
+  }
+  &__icon {
+    color: #f0f0f0;
+    @include medium {
+      color: unset;
+      margin-bottom: 1rem;
+    }
+  }
   &__menu-icon-wrapper {
     margin-top: 0.5rem;
     cursor: pointer;
@@ -31,4 +83,6 @@
     background-color: #232b2b;
     margin-bottom: 0.5rem;
   }
+  //background-color: #ffffff;
+  //padding: 0 1rem;
 }

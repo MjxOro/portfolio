@@ -17,11 +17,14 @@ const Burger = ({ state, onClick }: any) => {
   useEffect(() => {
     if (state) {
       setAnimate({
-        top: { rotate: 405, y: 5, backgroundColor: '#f0f0f0' },
-        bottom: { rotate: -405, y: -5, backgroundColor: '#f0f0f0' }
+        top: { rotate: 405, y: 5 },
+        bottom: { rotate: -405, y: -5 }
       });
     } else {
-      setAnimate({ top: { rotate: 0, y: 0 }, bottom: { rotate: 0, y: 0 } });
+      setAnimate({
+        top: { rotate: 0, y: 0 },
+        bottom: { rotate: 0, y: 0 }
+      });
     }
   }, [state]);
   return (
